@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bashio
+set -e
+
+ARGS="-addr=$(bashio::config 'addr') -username=$(bashio::config 'username') -password=$(bashio::config 'password') -host=$(bashio::config 'host') -auth-method=$(bashio::config 'authMethod') -log-level=$(bashio::config 'logLevel')"
+
+bashio::log.info "Starting"
+
+if ! "/sagemcom_fast_exporter" $ARGS
+then
+    bashio::log.error "Error starting"
+fi

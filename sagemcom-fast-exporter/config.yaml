@@ -1,0 +1,30 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
+name: Sagemcom Fast Exporter
+version: "v0.3.1"
+slug: sagemcom_fast_exporter
+description: Unofficial stats exporter
+url: "https://github.com/erka/ha-sagemcom-fast-exporter-addon/tree/main/sagemcom-fast-exporter"
+arch:
+  - armhf
+  - armv7
+  - amd64
+  - aarch64
+init: false
+environment:
+  USER: nobody
+options:
+  addr: "0.0.0.0:9780"
+  authMethod: "SHA512"
+  host: "192.168.2.1"
+  logLevel: "info"
+  username: "admin"
+  password: ""
+  refresh: "1h0m0s"
+schema:
+  addr: "str?"
+  authMethod: "list(SHA512|MD5)"
+  logLevel: "list(error|info|debug)"
+  username: "str?"
+  password: "password?"
+  refresh: "str?"
+  host: "str?"

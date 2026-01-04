@@ -1,0 +1,22 @@
+configuration:
+  addr:
+    name: Address
+    description: Address to listen on for web interface and telemetry
+  authMethod:
+    name: Auth Method
+    description: Authentication method to use
+  host:
+    name: Host
+    description: IP address or hostname of the router
+  logLevel:
+    name: Log Level
+    description: Log level to use
+  password:
+    name: Password
+    description: Password to use for authentication
+  refresh:
+    name: Refresh
+    description: Session refresh interval (1h0m0s)
+  username:
+    name: Username
+    description: Username to use for authentication
