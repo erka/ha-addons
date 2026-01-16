@@ -1,9 +1,9 @@
 ---
 name: Tailscale
-version: dev
-slug: tailscale
+version: "nightly"
+slug: tailscale-fork
 description: Zero config VPN for building secure networks
-url: https://github.com/hassio-addons/addon-tailscale
+url: https://github.com/erka/ha-addons/tailscale
 ingress: true
 ingress_port: 0
 ingress_stream: true
