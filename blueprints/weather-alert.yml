@@ -1,0 +1,158 @@
+blueprint:
+  name: Weather Alert Notification
+  description: Send notifications for weather alerts with severity level
+  domain: automation
+  input:
+    alert_sensor:
+      name: Weather Alert Sensor
+      description: Select the sensor containing weather alert data
+      selector:
+        entity:
+          domain: sensor
+    notify_service:
+      name: Notification Service
+      description: Select the notification service to use
+      selector:
+        text:
+          type: text
+      default: notify.notify
+    enable_critical:
+      name: Send Critical Alerts (Red)
+      description: Send notifications for critical (red) level alerts
+      selector:
+        boolean:
+      default: true
+    enable_warning:
+      name: Send Warning Alerts (Orange/Yellow)
+      description: Send notifications for warning level alerts
+      selector:
+        boolean:
+      default: true
+    enable_info:
+      name: Send Info Alerts (Green/Yellow)
+      description: Send notifications for info level alerts
+      selector:
+        boolean:
+      default: true
+
+trigger:
+  - platform: state
+    entity_id: !input alert_sensor
+    id: state_change
+  - platform: template
+    value_template: "{{ state_attr(trigger.entity_id, 'text') }}"
+    id: message_change
+
+condition:
+  - condition: template
+    value_template: >
+      {% set awareness_level = state_attr(trigger.entity_id, 'awarenessLevelID') %}
+      {% set trigger_type = trigger.id %}
+      {% set current_text = state_attr(trigger.entity_id, 'text') %}
+      
+      {# Only proceed if we have valid alert data #}
+      {% if awareness_level is none %}
+        false
+      {% else %}
+        true
+      {% endif %}
+
+action:
+  - variables:
+      alert_text: "{{ state_attr(trigger.entity_id, 'text') }}"
+      awareness_type: "{{ state_attr(trigger.entity_id, 'awarenessTypeName') }}"
+      awareness_level: "{{ state_attr(trigger.entity_id, 'awarenessLevelID') }}"
+      start_time: "{{ state_attr(trigger.entity_id, 'startTime') }}"
+      end_time: "{{ state_attr(trigger.entity_id, 'endTime') }}"
+      alert_icon: "{{ state_attr(trigger.entity_id, 'icon') }}"
+      area_code: "{{ state_attr(trigger.entity_id, 'idAreaAviso') }}"
+      trigger_type: "{{ trigger.id }}"
+      enable_critical: !input enable_critical
+      enable_warning: !input enable_warning
+      enable_info: !input enable_info
+
+  - condition: template
+    value_template: >
+      {% set enable_critical = enable_critical %}
+      {% set enable_warning = enable_warning %}
+      {% set enable_info = enable_info %}
+      {% if awareness_level == 'red' and enable_critical %}
+        true
+      {% elif awareness_level in ['orange', 'yellow'] and enable_warning %}
+        true
+      {% elif awareness_level in ['green', 'yellow'] and enable_info %}
+        true
+      {% else %}
+        false
+      {% endif %}
+
+  - service: !input notify_service
+    data:
+      title: "{% if awareness_level == 'red' %}🔴 {{ awareness_type }} Warning{% elif awareness_level == 'orange' %}🟠 {{ awareness_type }} Alert{% elif awareness_level == 'yellow' %}🟡 {{ awareness_type }} Advisory{% else %}🔵 {{ awareness_type }} Notice{% endif %}"
+      message: "{{ alert_text | truncate(80) }}{% if start_time and end_time %} ⏰ Until {{ end_time | regex_findall('[0-9]{1,2}:[0-9]{2}') | first | default('later') }} | 📍 {{ area_code }}{% endif %}"
+      data:
+        tag: "weather_alert_{{ area_code }}"
+        group: "Weather Alerts"
+        color: >
+          {% if awareness_level == 'red' %}
+          #DC2626
+          {% elif awareness_level == 'orange' %}
+          #EA580C  
+          {% elif awareness_level == 'yellow' %}
+          #CA8A04
+          {% else %}
+          #059669
+          {% endif %}
+        vibrationPattern: >
+          {% if awareness_level == 'red' %}
+          0,400,100,400,100,400
+          {% elif awareness_level == 'orange' %}
+          0,300,100,300
+          {% else %}
+          0,200
+          {% endif %}
+        sound: >
+          {% if awareness_level == 'red' %}
+          alarm
+          {% elif awareness_level == 'orange' %}
+          bell
+          {% else %}
+          default
+          {% endif %}
+        notification_icon: "{{ alert_icon }}"
+        ttl: 0
+        actions:
+          - action: "VIEW_DETAILS"
+            title: "View Details"
+        subtitle: "Weather Alert System"
+        clickAction: "/dashboard/weather"
+        channelId: "weather_alerts"
+
+  - service: persistent_notification.create
+    data:
+      notification_id: "weather_alert_{{ area_code }}_{{ now().timestamp() }}"
+      title: >
+        {% if awareness_level == 'red' %}
+        🔴 {{ awareness_type }} Warning
+        {% elif awareness_level == 'orange' %}
+        🟠 {{ awareness_type }} Alert
+        {% elif awareness_level == 'yellow' %}
+        🟡 {{ awareness_type }} Advisory
+        {% else %}
+        🔵 {{ awareness_type }} Notice
+        {% endif %}
+      message: >
+        <h3>{{ alert_text }}</h3>
+        
+        <hr>
+        
+        <b>Severity:</b> {{ awareness_level | upper }} &nbsp;|&nbsp;
+        <b>Area:</b> {{ area_code }}
+        
+        {% if start_time and end_time %}
+        <br><b>Active:</b> {{ start_time }} → {{ end_time }}
+        {% endif %}
+        
+        {% if awareness_level in ['red', 'orange'] %}
+        <br><br><i>This alert requires your attention. Please follow local safety guidelines.</i>
+        {% endif %}

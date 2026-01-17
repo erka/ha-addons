@@ -1,0 +1,202 @@
+tokyo-night-moon:
+  modes:
+    dark:
+      primary-background-color: "#16161e"
+      secondary-background-color: "#1F2335"
+      app-header-background-color: var(--primary-background-color) 
+      ha-card-background: rgba(26, 27, 46, 0.9)
+      app-theme-color: "#16161e"
+  # Global
+  lovelace-background: var(--background-image)
+  light-primary-color: "#7AA2F7"
+  divider-color: rgba(122, 162, 247, 0.05)
+  accent-color: var(--primary-color)
+  # Text
+  primary-text-color: "#C0CAF5"
+  secondary-text-color: "#9AA5CE"
+  text-primary-color: var(--primary-text-color)
+  disabled-text-color: rgba(154, 165, 206, 0.5)
+  text-dark-color: var(--primary-text-color)
+  # Sidebar Menu
+  sidebar-background-color: var(--secondary-background-color)
+  sidebar-icon-color: var(--light-primary-color)
+  sidebar-text-color: "#C0CAF5"
+  sidebar-selected-background-color: var(--primary-background-color)
+  sidebar-selected-icon-color: var(--primary-text-color)
+  sidebar-selected-text-color: var(--sidebar-selected-icon-color)
+  # States and Badges
+  state-icon-color: var(--primary-text-color)
+  state-icon-active-color: var(--yellow-color)
+  state-icon-unavailable-color: var(--disabled-text-color)
+  state-inactive-color: var(--disabled-text-color)
+  paper-item-icon-active-color: var(--state-icon-active-color)
+  # Sliders
+  paper-slider-knob-color: "#C0CAF5"
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--paper-slider-knob-color)
+  paper-slider-active-color: "#7AA2F7"
+  paper-slider-secondary-color: var(--paper-slider-knob-color)
+  paper-slider-container-color: rgba(192, 202, 245, 0.3)
+  paper-slider-font-color: "#C0CAF5"
+  # Labels
+  label-badge-background-color: "#2F334D"
+  label-badge-text-color: "#C0CAF5"
+  label-badge-red: rgba(247, 118, 142, 0.7)
+  # Cards
+  card-background-color: var(--secondary-background-color)
+  paper-listbox-background-color: var(--primary-background-color)
+  ha-card-border-radius: 20px
+  paper-card-background-color: var(--ha-card-background)
+  rgb-card-background-color: rgb(34, 36, 54)
+  # Toggles
+  paper-toggle-button-checked-button-color: "#7AA2F7"
+  paper-toggle-button-checked-bar-color: "#7AA2F7"
+  paper-toggle-button-unchecked-button-color: "#565F89"
+  paper-toggle-button-unchecked-bar-color: var(--disabled-text-color)
+  # Table row
+  table-row-background-color: var(--primary-background-color)
+  table-row-alternative-background-color: var(--secondary-background-color)
+  # Switches
+  switch-checked-track-color: var(--green-color)
+  switch-checked-button-color: "#C0CAF5"
+  switch-unchecked-track-color: "#565F89"
+  switch-unchecked-button-color: "#C0CAF5"
+  # Dialog
+  ha-dialog-surface-backdrop-filter: var(--ha-card-backdrop-filter)
+  dialog-box-shadow: var(--ha-card-box-shadow)
+  ha-dialog-surface-background: var(--ha-card-background)
+  # Header
+  app-header-backdrop-filter: var(--ha-card-backdrop-filter)
+  app-header-edit-background-color: rgba(34, 36, 54, 0.4)
+  # Colors
+  red-color: "#F7768E"
+  pink-color: "#BB9AF7"
+  purple-color: "#9D7CD8"
+  indigo-color: "#7AA2F7"
+  blue-color: "#7DCFFF"
+  blue-color: "#394b70"
+  blue-color: "#3d59a1"
+  light-blue-color: "#7DCFFF"
+  cyan-color: "#7DCFFF"
+  teal-color: "#7DCFFF"
+  green-color: "#73daca"
+  yellow-color: "#E0AF68"
+  orange-color: "#FF9E64"
+  brown-color: "#E0AF68"
+  primary-color: var(--blue-color)
+  ha-color-primary-05: "#191b2b"
+  ha-color-primary-10: "#323b52"
+  ha-color-primary-20: "#4b5579"
+  ha-color-primary-30: "#646f9f"
+  ha-color-primary-40: var(--primary-color)
+  ha-color-primary-50: "#97add7"
+  ha-color-primary-60: "#b4c1e0"
+  ha-color-primary-70: "#d1d6ea"
+  ha-color-primary-80: "#e8ebf3"
+  ha-color-primary-90: "#f4f6fa"
+  ha-color-primary-95: "#fafbfd"
+  warning-color: "#db4b4b"
+  # Other
+  paper-dialog-background-color: rgba(34, 36, 54, 0.9)
+  paper-item-icon-color: "#C0CAF5"
+  more-info-header-background: rgba(34, 36, 54, 0.5)
+  lumo-body-text-color: var(--primary-text-color)
+  markdown-code-background-color: "#2A2E42"
+  code-editor-background-color: "#1A1B26"
+  clear-background-color: var(--ha-card-background)
+  mdc-theme-surface: var(--secondary-background-color)
+  material-background-color: var(--secondary-background-color)
+  mdc-checkbox-unchecked-color: "#7AA2F7"
+  mdc-radio-unchecked-color: "#7AA2F7"
+  # Custom
+  mcg-title-letter-spacing: .15em
+  mini-media-player-base-color: "#C0CAF5"
+  mini-media-player-icon-color: "#C0CAF5"
+  # Added for https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/72
+  input-ink-color: var(--primary-text-color)
+  input-fill-color: transparent
+  input-disabled-fill-color: transparent
+  input-label-ink-color: var(--primary-text-color)
+  input-disabled-ink-color: var(--disabled-text-color)
+  input-dropdown-icon-color: var(--primary-text-color)
+  input-idle-line-color: var(--secondary-text-color)
+  input-hover-line-color: var(--secondary-text-color)
+  codemirror-property: var(--accent-color)
+  md-list-container-color: none # ha-md-list already has a card background
+
+  card-mod-theme: "tokyo-night-moon"
+  card-mod-card: |
+    ha-card {
+      backdrop-filter: unset !important;
+    }
+    ha-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      backdrop-filter: var(--ha-card-backdrop-filter);
+      z-index: -1;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow: var(--ha-card-box-shadow);
+    }
+    :host(hui-heading-card) ha-card {
+      background: none !important;
+      backdrop-filter: none !important;
+    }
+    :host(hui-heading-card) ha-card::before {
+      content: none !important;
+    }
+
+    # Energy dashboard sources
+    .mdc-data-table {
+      background-color: none !important;
+    }
+    .mdc-data-table__row,
+    .mdc-data-table__header-cell {
+      background: var(--ha-card-background) !important;
+    }
+
+    # Markdown card with text_only
+    ha-card.text-only {
+      background: none !important;
+      backdrop-filter: none !important;
+    }
+    ha-card.text-only::before {
+      content: none !important;
+    }
+
+    # Mushroom title card
+    :host(mushroom-title-card) ha-card {
+      background: none !important;
+      backdrop-filter: none !important;
+    }
+    :host(mushroom-title-card) ha-card::before {
+      content: none !important;
+    }
+
+    # Bubble card
+    :host(.type-custom-bubble-card) ha-card {
+      background: none !important;
+      backdrop-filter: none !important;
+      box-shadow: none !important;
+      border-radius: 0px !important;
+    }
+    :host(.type-custom-bubble-card) ha-card::before {
+      content: none !important;
+      background: none !important;
+      backdrop-filter: none !important;
+    }
+
+    # Mushroom chips card
+    :host(mushroom-chips-card) ha-card {
+      background: none !important;
+      backdrop-filter: none !important;
+      box-shadow: none !important;
+    }
+    :host(mushroom-chips-card) ha-card::before {
+      content: none !important;
+      background: none !important;
+      backdrop-filter: none !important;
+    }
+
