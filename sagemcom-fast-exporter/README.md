@@ -21,7 +21,6 @@ Key options:
 - `addr` - Exporter listen address (default: `0.0.0.0:9780`)
 - `authMethod` - Authentication method (SHA512 or MD5)
 - `logLevel` - Logging level (error, info, debug)
-- `scraper` - Scraper (standard or lite)
 
 ## Prometheus Integration
 
