@@ -5,7 +5,7 @@ ARGS="--bind=$(bashio::config 'addr') --username=$(bashio::config 'username') --
 
 bashio::log.info "Starting"
 
-if ! "/sagemcom_fast_exporter" $ARGS
+if ! "/sagemcom-fast-exporter" $ARGS
 then
     bashio::log.error "Error starting"
 fi
